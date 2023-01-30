@@ -5,6 +5,7 @@ import { sendGetRequest } from '../AJAX';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+
 function Winner() {
     const navigate = useNavigate();
     const [vid, setVid] = useState('');
