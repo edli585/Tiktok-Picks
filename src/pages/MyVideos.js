@@ -19,9 +19,7 @@ function MyVideos() {
         })
         .catch((err) => {
             console.log("Cannot get videos:", err);
-        })
-        //console.log("videos", videos);
-        
+        })        
     };
 
     useEffect(initialize, []);
@@ -43,8 +41,6 @@ function MyVideos() {
             
         }
     }
-    console.log(vids);
-    //console.log(vids[0]);
     return (
         <div className = "MyVideosPage">
             <header className='MyVideosHeader'>

@@ -5,8 +5,6 @@ import { sendGetRequest } from '../AJAX';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-//let example = 'https://www.tiktok.com/embed/7088856562982423854';
-
 function Winner() {
     const navigate = useNavigate();
     const [vid, setVid] = useState('');
