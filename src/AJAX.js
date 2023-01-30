@@ -21,10 +21,8 @@ async function sendPostRequest(url, data) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     };
-    //console.log(params)
     let response = await fetch(url, params);
     if(response.ok) {
-        //alert("response good")
         let data = await response.json();
         console.log(data)
         return data;
