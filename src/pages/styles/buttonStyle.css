@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --magenta: rgba(238, 29, 82, 0.9);
+    --cyan: rgb(105, 201, 208);
+}
+
+button {
+    font-size: 20px;
+}
+
+button.DeleteButton {
+    border-radius: 10px;
+    border-color: white;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+    font-family: "Boogaloo";
+    color: var(--magenta);
+    background-color: white;
+}
+
+button.AbleButton {
+    background-color: var(--magenta);
+    color: white;
+    font-family: sans-serif;
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+button.AbleButton:hover {
+    background-color: var(--cyan);
+}
+
+button.UnableButton {
+    background-color: var(--magenta);
+    color: white;
+    font-family: sans-serif;
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    margin: 10px;
+    opacity: 0.8;
+}
+
+button.ContinueButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--magenta);
+    color: white;
+    font-family: sans-serif;
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.continueButton:hover {
+    background-color: var(--cyan);
+}
+
+button.HeartButton {
+    margin-top: 50px;
+    background-color: white;
+    border: none;
+}
+
+.heartIcon {
+    height: 100px;
+    width: 100px;
+    color: pink;
+}
+
+.selected {
+    height: 100px;
+    width: 100px;
+    color: var(--magenta);
+}

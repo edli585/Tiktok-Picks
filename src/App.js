@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import {Routes, Route} from 'react-router-dom';
+//import './App.css';
+import CompareVids from './pages/CompareVids';
+import MyVideos from './pages/MyVideos';
+import SubmitVideo from './pages/SubmitVideo';
+import Winner from './pages/Winner';
+import Preview from './pages/Preview';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path = '/' exact element = {<MyVideos />} />
+        <Route path = '/submit' exact element = {<SubmitVideo/>} />
+        <Route path = '/preview' exact element = {<Preview />} />
+        <Route path = '/compare' exact element = {<CompareVids />}/>
+        <Route path = '/winner' exact element = {<Winner />}/>
+      </Routes>
+    </>
+    
   );
 }
 
 export default App;
+//

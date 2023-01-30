@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --magenta: rgba(238, 29, 82, 0.9);
+    --cyan: rgb(105, 201, 208);
+}
+
+div.MyVideosPage {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.Submit {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+}
+
+div.Compare {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+div.Preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+div.Winner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header.MyVideosHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    margin-top: 50px;
+}
+
+header.SubmitHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+}
+
+header.PreviewHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-top: 50px;
+}
+
+header.CompareHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+header.WinnerHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+div.LeftHeader {
+    width: 18%;
+}
+
+div.MidHeader {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    font-family: "Boogaloo";
+}
+
+div.RightHeader {
+    width: 18%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 30px;
+}
+
+div.CompareHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+h1.PageTitle {
+    font-family: "Boogaloo";
+    font-size: 48px;
+}
+
+p.UploadPrompt {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+main.AllVideos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 100vw;
+}
+
+main.SubmitMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 390px;
+    width: 390px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    background-color: red;
+    background-image: linear-gradient(-70deg, rgb(105, 201, 208), 60%, rgba(238, 29, 82, 0.9));
+    color: whitesmoke;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 20px;
+}
+
+main.CompareMain {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+main.PreviewMain {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+div.Videos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    width: 100vw;
+}
+
+div.VideoBlock {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+div.VideoEntry {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 50px;
+}
+
+div.VideoName {
+    font-size: 18px;
+    color: gray;
+    padding: 5px;
+    height: 60px;
+    width: 90%;
+    border: 2px dashed gray;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+div.FilledVideo {
+    display: flex;
+    width: 90%;
+    border-radius: 10px;
+    align-items: center;
+    border: 2px solid gray;
+    font-size: 18px;
+    padding: 5px;
+    height: 60px;
+    color: var(--magenta);
+}
+
+div.FormFields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+    margin-bottom: 50px;
+}
+
+.heart {
+    color: var(--magenta);
+    font-size: 65px;
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+}
+
+form.Submit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0;
+}
+
+label {
+    width: 75%;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+input {
+    font-weight: 400;
+    width: 70%;
+    height: 40px;
+    margin: 0 auto;
+    padding: 3px 15px;
+    font-family: 'Inter', sans-serif;
+    border-radius: 12px;
+    border: 1px solid transparent;
+}
+
+input[type=text]:focus {
+    border: 1px solid turquoise;
+}
+
+@media screen and (max-width: 1000px) {
+    div.Videos {
+        flex-direction: column;
+    }
+
+    main.CompareMain {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
