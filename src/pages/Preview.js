@@ -9,41 +9,25 @@ import Video from './components/Video';
 
 function Preview() {
     const navigate = useNavigate();
-    const [vid, setVid] = useState({
-        username: useLocation().user,
-        videoname: useLocation().videoname,
-        url: useLocation().url
-    });
+    let location = useLocation();
+    const [vid, setVid] = useState([]);
     
     function initialize() {
-        sendGetRequest('/getMostRecentVid')
-        .then((response) => {
-            console.log(response[0])
-            setVid({
-                username: response[0].username,
-                embed: "https://www.tiktok.com/embed/" + response[0].url,
-                url: response[0].url,
-                videoname: response[0].videoname
-            });
-        })
-        .catch((err) => {
-            console.log("Couldn't get video:", err);
-        });  
-    };
-
+        let username = location.user, url = location.url, Id = location.id;
+        let video = [<Video user = {username} url = {url} Id = {Id}></Video>]
+        setVid(video)
+    }
     useEffect(initialize, []);
     
+    console.log(vid)
     return (
         <div className="Preview">
             <header className="PreviewHeader">
-                <h1>{vid.videoname + " "} by {" " + vid.username}</h1>
+                <h1>{location.name + " "} by {" " + location.user}</h1>
             </header>
             <main className="PreviewMain">
                 <div className="VideoContainer">
-                    <div className="Video">
-                        <iframe src={vid.url} title = "Preview"/>
-                    </div>
-                    <Video url = {vid.url} user = {vid.username}></Video>
+                    {vid}
                 </div>  
             </main>
             <button className="ContinueButton" onClick={() => navigate('/')}>Continue</button>

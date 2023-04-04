@@ -1,15 +1,32 @@
 import '../styles/videoStyle.css';
+import { useEffect } from 'react';
 
 function Video(props) {
+    console.log(props)
     let fullURL = `https://www.tiktok.com/@${props.user}/video/${props.url}`;
-    return (
-        <div className="Video">
-            <blockquote className = "tiktok-embed" cite = {fullURL} data-video-id = {props.url}>
-                <section>
+    function initialize() {
+        console.log(props.Id);
+        let block = document.createElement('blockquote');
+        block.cite = fullURL;
+        block.setAttribute('data-video-id', props.url);
 
-                </section>
-            </blockquote>
-            <script async src = 'https://www.tiktok.com/embed.js' id = 'tiktokScript'></script>
+        let section = document.createElement('section');
+        block.appendChild(section);
+
+        let script = document.createElement('script');
+        script.src = 'https://www.tiktok.com/embed.js';
+        script.id = 'tiktokScript';
+        script.async = true;
+
+        let div = document.getElementById(props.Id);
+        div.appendChild(block);
+        div.appendChild(script);
+    }
+
+    useEffect(initialize, []);
+    return (
+        <div className="Video" id={props.Id}>
+            
         </div>
     );
 }

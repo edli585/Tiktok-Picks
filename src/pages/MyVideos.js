@@ -30,16 +30,18 @@ function MyVideos() {
 
     function previewButton(index) {
         console.log(index);
-        if (vids[index]) {
+        if (vids.length >= index + 1) {
             navigate('/Preview', {state: {
                 user: vids[index].username,
                 name: vids[index].videoname,
-                url: vids[index].url
+                url: vids[index].url,
+                id: index
             }});
         }
     }
 
     function VideoGroup(props) {
+        let vids = props.videos;
         return (
             <div className='Videos'>
                 <div className="VideoBlock">
@@ -102,23 +104,25 @@ function MyVideos() {
         let videos = [];
         sendGetRequest('/getAllVideos')
             .then((result) => {
-                console.log(result);
+                console.log("response:", result);
                 result.forEach((vid) => videos.push(vid));
-                setVids(videos);
-                let vidBlocks = [];
-                for (let i = 0; i < videos.length; i += 8) {
-                    vidBlocks.push(<VideoGroup index={i}></VideoGroup>);
-                }
-                setBlocks(vidBlocks);
-                console.log(blocks)
+                setVids(videos)
             })
             .catch((err) => {
                 console.log("Cannot get videos:", err);
             })
+        console.log("Videos", videos)
+        let vidBlocks = [];
+        let index = 0;
+        do {
+            console.log(index);
+            vidBlocks.push(<VideoGroup videos = {videos} index = {index}></VideoGroup>);
+            index += 8;
+        } while(index < videos.length);
+        setBlocks(vidBlocks)
     };
 
-    useEffect(initialize, [blocks]);
-
+    useEffect(initialize, []);
 
     return (
         <div className="MyVideosPage">
@@ -138,7 +142,6 @@ function MyVideos() {
             <p className='UploadPrompt'>Please submit eight videos to continue:</p>
             <main className='AllVideos'>
                 {blocks}
-
                 <button className={vids.length === 8 ? 'AbleButton' : "UnableButton"} onClick={() => vids.length === 8 ? navigate('/compare') : alert("Eight videos are needed")}>Play Game</button>
             </main>
         </div>
