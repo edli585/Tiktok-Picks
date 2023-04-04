@@ -13,7 +13,7 @@ function Preview() {
     const [vid, setVid] = useState([]);
     
     function initialize() {
-        let username = location.user, url = location.url, Id = location.id;
+        let username = location.state.user, url = location.state.url, Id = location.state.id;
         let video = [<Video user = {username} url = {url} Id = {Id}></Video>]
         setVid(video)
     }
@@ -23,7 +23,7 @@ function Preview() {
     return (
         <div className="Preview">
             <header className="PreviewHeader">
-                <h1>{location.name + " "} by {" " + location.user}</h1>
+                <h1>{location.state.name + " "} by {" " + location.state.user}</h1>
             </header>
             <main className="PreviewMain">
                 <div className="VideoContainer">

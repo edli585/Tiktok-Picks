@@ -8,7 +8,6 @@ import { sendGetRequest, sendPostRequest } from '../AJAX';
 function MyVideos() {
     const navigate = useNavigate();
     const [vids, setVids] = useState([]);
-    const [blocks, setBlocks] = useState([]);
 
     function deleteButton(index) {
         console.log(index);
@@ -31,7 +30,7 @@ function MyVideos() {
     function previewButton(index) {
         console.log(index);
         if (vids.length >= index + 1) {
-            navigate('/Preview', {state: {
+            navigate('/preview', {state: {
                 user: vids[index].username,
                 name: vids[index].videoname,
                 url: vids[index].url,
@@ -100,6 +99,18 @@ function MyVideos() {
         );
     }
 
+    function winnerButton() {
+        if(vids.length >= 8) {
+            sendGetRequest('/canCalcWinner')
+            .then(() => {
+                navigate('./winner')
+            })
+            .catch((err) => {
+
+            })
+        }
+    }
+
     function initialize() {
         let videos = [];
         sendGetRequest('/getAllVideos')
@@ -112,24 +123,22 @@ function MyVideos() {
                 console.log("Cannot get videos:", err);
             })
         console.log("Videos", videos)
-        let vidBlocks = [];
-        let index = 0;
-        do {
-            console.log(index);
-            vidBlocks.push(<VideoGroup videos = {videos} index = {index}></VideoGroup>);
-            index += 8;
-        } while(index < videos.length);
-        setBlocks(vidBlocks)
     };
 
     useEffect(initialize, []);
-
+    let vidBlocks = [];
+    let index = 0;
+    do {
+        console.log(index);
+        vidBlocks.push(<VideoGroup videos = {vids} index = {index}></VideoGroup>);
+        index += 8;
+    } while(index < vids.length);
     return (
         <div className="MyVideosPage">
             <header className='MyVideosHeader'>
                 <div className='LeftHeader'></div>
                 <div className='MidHeader'>
-                    <h1>My Videos</h1>
+                    <h1>All Videos</h1>
                 </div>
                 <div className='RightHeader'>
                     <button className='AbleButton' onClick=
@@ -139,10 +148,11 @@ function MyVideos() {
                     </button>
                 </div>
             </header>
-            <p className='UploadPrompt'>Please submit eight videos to continue:</p>
+            <p className='UploadPrompt'>There must be at least eight videos to enter preferences:</p>
             <main className='AllVideos'>
-                {blocks}
-                <button className={vids.length === 8 ? 'AbleButton' : "UnableButton"} onClick={() => vids.length === 8 ? navigate('/compare') : alert("Eight videos are needed")}>Play Game</button>
+                {vidBlocks}
+                <button className={vids.length >= 8 ? 'AbleButton' : "UnableButton"} onClick={() => (vids.length >= 8) ? navigate('/compare') : alert("Eight videos are needed")}>Play Game</button>
+                <button className={vids.length >= 8 ? 'AbleButton' : 'UnableButton'} onClick={() => winnerButton()}>Get Winner</button>
             </main>
         </div>
     );

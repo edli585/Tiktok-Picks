@@ -7,6 +7,7 @@ import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {sendGetRequest, sendPostRequest} from '../AJAX';
+import Video from './components/Video';
 
 
 function CompareVids() {
@@ -52,6 +53,9 @@ function CompareVids() {
     };
 
     useEffect(initialize, []);
+    let blocks = (vids[0]._id == '' || vids[1]._id == '') ? ['', ''] : 
+                                                            [<Video user = {vids[0].username} url = {vids[0].url} Id = {vids[0]._id}></Video>, 
+                                                            <Video user = {vids[1].username} url = {vids[1].url} Id = {vids[1]._id}></Video>];
     
     const moveOn = function() {
         let data = {better: '', worse: ''}
@@ -80,6 +84,30 @@ function CompareVids() {
         });
     };
 
+    const submit = function() {
+        let data = {better: '', worse: ''}
+        if(f1) {
+            data.better = vids[0]._id;
+            data.worse = vids[1]._id;
+        }
+        else if(f2) {
+            data.better = vids[1]._id;
+            data.worse = vids[0]._id;
+        }
+        else {
+            alert("Please pick a preference");
+            return;
+        }
+        
+        sendPostRequest('/insertPref', data)
+        .then((res) => {
+            navigate('/');
+        })
+        .catch((err) => {
+            console.log("Couldn't insert preference: ", err)
+        });
+    }
+
     return (
         <div className = 'Compare'>
             <header className = 'CompareHeader'>
@@ -94,10 +122,8 @@ function CompareVids() {
             </header>
             <main className = 'CompareMain'>
                 <div className = 'VideoContainer'>
-                    <div className = 'Video'>
-                        <div className = 'VideoTitle'>{vids[0].videoname + " by " + vids[0].username}</div>
-                        <iframe src={("https://www.tiktok.com/embed/"+vids[0].url)} title = "Video 1"/>
-                    </div>
+                    <div className = 'VideoTitle'>{vids[0].videoname + " by " + vids[0].username}</div>
+                    {blocks[0]}
                     <div className = 'VideoControls'>
                         <div className = 'Heart'>
                             <button className = 'HeartButton' onClick={() => {setF1(!f1); setF2(false)}}>
@@ -107,10 +133,8 @@ function CompareVids() {
                     </div>
                 </div>
                 <div className = 'VideoContainer'>
-                    <div className = 'Video'>
-                        <div className = 'VideoTitle'>{vids[1].videoname + ' by ' + vids[1].username}</div>
-                        <iframe src={("https://www.tiktok.com/embed/"+vids[1].url)} title = "Video 2"/>
-                    </div>
+                    <div className = 'VideoTitle'>{vids[1].videoname + ' by ' + vids[1].username}</div>                        
+                    {blocks[1]}
                     <div className = 'VideoControls'>
                         <button className = 'HeartButton' onClick={() => {setF1(false); setF2(!f2);}}>
                             <FontAwesomeIcon icon={faHeart} className = {f2 === false ? 'heartIcon' : 'selected'}/>
@@ -119,7 +143,9 @@ function CompareVids() {
                 </div>
             </main>
             <footer>
-                <button className = 'AbleButton' onClick={() => moveOn()}>Next</button>
+                <button className = 'AbleButton' onClick = {() => navigate('/')}>Return</button>
+                <button className = 'AbleButton' onClick = {() => submit()}>Submit and Return</button>
+                <button className = 'AbleButton' onClick = {() => moveOn()}>Submit and Continue</button>
             </footer>
         </div>
     );

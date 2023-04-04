@@ -7,6 +7,7 @@ function Video(props) {
     function initialize() {
         console.log(props.Id);
         let block = document.createElement('blockquote');
+        block.className = "tiktok-embed";
         block.cite = fullURL;
         block.setAttribute('data-video-id', props.url);
 

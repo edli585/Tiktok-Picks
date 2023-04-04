@@ -4,21 +4,30 @@ import './styles/videoStyle.css';
 import { sendGetRequest } from '../AJAX';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Video from './components/Video';
 
 
 function Winner() {
     const navigate = useNavigate();
-    const [vid, setVid] = useState('');
+    const [vid, setVid] = useState({
+        username: '',
+        url: '',
+        videoname: '',
+        Id: 0
+    });
+    //const [block, setBlock] = useState([])
     
     function initialize() {
         sendGetRequest('/getWinner')
         .then((response) => {
-            console.log(response);
+            console.log("Response:",response);
             setVid({
                 username: response.username,
-                url: "https://www.tiktok.com/embed/" + response.url,
-                videoname: response.videoname
+                url: response.url,
+                videoname: response.videoname,
+                Id: 1
             });
+            
         })
         .catch((err) => {
             console.log("Couldn't get video:", err);
@@ -26,17 +35,14 @@ function Winner() {
     };
 
     useEffect(initialize, []);
-    
+    let block = vid.Id === 0 ? [] : ([<Video user = {vid.username} url = {vid.url} Id = {vid.Id}></Video>]);
     return(
         <div className='Winner'>
             <header className = 'WinnerHeader'>
-                <h1 className = 'PageTitle'>The winner is...</h1>
+                <h1 className = 'PageTitle'>The winner is {" " + vid.videoname + " by " + vid.username}</h1>
             </header>
             <div className='VideoContainer'>
-                <div className = 'Video'>
-                    <p>{vid.videoname + " "} by {" " + vid.username}</p>
-                    <iframe src={vid.url} title = "Winner"/>
-                </div>
+                {block}
             </div>
             <button className = "AbleButton" onClick = {() => navigate('/')}>Return</button>
         </div>
