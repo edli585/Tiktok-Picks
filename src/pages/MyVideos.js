@@ -106,7 +106,7 @@ function MyVideos() {
                 navigate('./winner')
             })
             .catch((err) => {
-
+                console.log("Can't get winner");
             })
         }
     }
